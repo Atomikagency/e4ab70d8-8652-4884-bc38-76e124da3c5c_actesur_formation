@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
   <g id="Groupe_7470" data-name="Groupe 7470" transform="translate(-107 -1504.615)">
-    <rect id="Rectangle_19" data-name="Rectangle 19" width="2" height="10" rx="1" transform="translate(111 1504.615)" fill="#fff"/>
-    <rect id="Rectangle_20" data-name="Rectangle 20" width="2" height="10" rx="1" transform="translate(107 1510.615) rotate(-90)" fill="#fff"/>
+    <rect id="Rectangle_19" data-name="Rectangle 19" width="2" height="10" rx="1" transform="translate(111 1504.615)" fill="#000"/>
+    <rect id="Rectangle_20" data-name="Rectangle 20" width="2" height="10" rx="1" transform="translate(107 1510.615) rotate(-90)" fill="#000"/>
   </g>
 </svg>

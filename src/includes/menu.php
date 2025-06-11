@@ -37,7 +37,9 @@ add_shortcode('main_menu', function ($atts) {
     }
 
 // Construction du HTML
-    $output = '<ul class="main-menu">';
+    $output = '<nav id="actesur-top-menu">
+    <img class="actesur-logo" decoding="async" src="/wp-content/uploads/2025/06/logo-actesur.webp" alt="logo-actesur" title="logo-actesur" srcset="/wp-content/uploads/2025/06/logo-actesur.webp 553w, /wp-content/uploads/2025/06/logo-actesur-480x208.webp 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 553px, 100vw" class="wp-image-75">
+    <ul id="actesur-main-menu" class="main-menu">';
 
     foreach ($menu_tree as $entry) {
         $item = $entry['item'];
@@ -46,7 +48,13 @@ add_shortcode('main_menu', function ($atts) {
 
         $output .= '<li>';
 
-        $output .= '<a href="' . $url . '">' . $title . '</a>';
+        $output .= '<a href="' . $url . '">' . $title;
+
+        if (!empty($entry['children']) || strtolower($title) === 'formations') {
+            $output .= '<i class="fa fa-angle-right" aria-hidden="true"></i>';
+        }
+
+        $output .= '</a>';
 
         // Si le label est Formations, on injecte dynamiquement
         if (strtolower($title) === 'formations') {
@@ -55,7 +63,7 @@ add_shortcode('main_menu', function ($atts) {
 
         // Affichage des sous-items classiques existants
         if (!empty($entry['children'])) {
-            $output .= '<ul>';
+            $output .= '<ul><button class="menu-return-button"><i class="fa fa-angle-left" aria-hidden="true"></i>Retour</button>';
             foreach ($entry['children'] as $child) {
                 $output .= '<li><a href="' . esc_url($child->url) . '">' . esc_html($child->title) . '</a></li>';
             }
@@ -65,7 +73,12 @@ add_shortcode('main_menu', function ($atts) {
         $output .= '</li>';
     }
 
-    $output .= '</ul>';
+    $output .= '</ul>
+    <a href="" class="espace-adherent" data-icon=""><span>Espace adhérent</span></a>
+    <button id="actesur-menu-toggle">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    </nav>';
 
     return $output;
 });
@@ -95,12 +108,13 @@ function render_formations_submenu() {
         $formations_by_categorie[$cat_slug][] = $formation;
     }
 
-    $output = '<ul class="submenu-formations">';
+    $output = '<ul class="submenu-formations"><button class="menu-return-button"><i class="fa fa-angle-left" aria-hidden="true"></i>Retour</button>';
 
     foreach ($categories as $slug => $label) {
         $url = site_url('/formations/?categorie=' . $slug);
+        $image_url = ACTESUR_FORMATION_PLUGIN_URL.'images/'.$slug . '.svg';
         $output .= '<li>';
-        $output .= '<a href="' . esc_url($url) . '">' . esc_html($label) . '</a>';
+        $output .= '<a href="' . esc_url($url) . '"><img src="'. esc_url($image_url) .'" /><span>' . esc_html($label) . '</span><i class="fa fa-angle-right" aria-hidden="true"></i></a>';
 
         // Si la catégorie contient des formations, on les affiche
         if (!empty($formations_by_categorie[$slug])) {
@@ -108,7 +122,7 @@ function render_formations_submenu() {
             foreach ($formations_by_categorie[$slug] as $formation) {
                 $formation_url = get_permalink($formation);
                 $formation_title = get_the_title($formation);
-                $output .= '<li><a href="' . esc_url($formation_url) . '">' . esc_html($formation_title) . '</a></li>';
+                $output .= '<li><a href="' . esc_url($formation_url) . '"><img src="' . esc_url(ACTESUR_FORMATION_PLUGIN_URL.'images/plus.svg') .'" />' . esc_html($formation_title) . '</a></li>';
             }
             $output .= '</ul>';
         }
