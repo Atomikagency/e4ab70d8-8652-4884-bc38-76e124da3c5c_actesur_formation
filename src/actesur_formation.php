@@ -16,3 +16,5 @@ if (!defined('ABSPATH')) {
 }
 
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'update-checker.php';
+require_once ACTESUR_FORMATION_PLUGIN_DIR . 'cpt/formation.php';
+require_once ACTESUR_FORMATION_PLUGIN_DIR . 'includes/menu.php';
