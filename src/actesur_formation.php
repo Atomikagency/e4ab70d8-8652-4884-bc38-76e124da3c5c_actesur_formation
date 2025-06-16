@@ -17,7 +17,9 @@ if (!defined('ABSPATH')) {
 
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'update-checker.php';
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'cpt/formation.php';
+require_once ACTESUR_FORMATION_PLUGIN_DIR . 'cpt/offre-emploi.php';
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'includes/menu.php';
+require_once ACTESUR_FORMATION_PLUGIN_DIR . 'includes/formation_list.shortcode.php';
 
 function ta_enqueue_styles()
 {
