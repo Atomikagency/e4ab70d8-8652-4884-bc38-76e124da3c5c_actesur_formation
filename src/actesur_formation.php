@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Actesur Formation
  * Description: Système de formation
- * Version: 1.0.6
+ * Version: 1.0.7
  * Author: AtomikAgency
  * Author URI: https://atomikagency.fr/
  */
