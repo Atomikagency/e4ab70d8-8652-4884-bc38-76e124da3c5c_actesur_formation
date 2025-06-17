@@ -301,3 +301,30 @@
         }
     }
 }
+
+.actesur-categorie-list .categorie-item{
+    & > h3 {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        align-items: center;
+        gap: 10px;
+        text-wrap: pretty;
+    }
+
+    & .formation-item {
+        margin-left: 40px;
+        font-size: 18px;
+        & > a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-block: 1px;
+            text-wrap: pretty;
+        }
+
+        &:last-child {
+            margin-bottom: 20px;
+        }
+    }
+}
