@@ -99,7 +99,7 @@ function render_formations_submenu() {
 
     // On organise les formations par catégorie (slug)
     $formations_by_categorie = [];
-
+    
     foreach ($formations as $formation) {
         $cat_slug = get_post_meta($formation->ID, '_formation_categorie', true);
         if (!isset($formations_by_categorie[$cat_slug])) {
@@ -110,24 +110,45 @@ function render_formations_submenu() {
 
     $output = '<ul class="submenu-formations"><button class="menu-return-button"><i class="fa fa-angle-left" aria-hidden="true"></i>Retour</button>';
 
-    foreach ($categories as $slug => $label) {
-        $url = site_url('/formations/?categorie=' . $slug);
-        $image_url = ACTESUR_FORMATION_PLUGIN_URL.'images/'.$slug . '.svg';
-        $output .= '<li>';
-        $output .= '<a href="' . esc_url($url) . '"><img src="'. esc_url($image_url) .'" /><span>' . esc_html($label) . '</span><i class="fa fa-angle-right" aria-hidden="true"></i></a>';
+    $order = [
+        ["prevention-des-risques-pro", "ergonomie", "les-risques-psychosociaux"],
+        ["formations-caces", "habilitations-electriques", "travail-en-hauteur-et-echafaudages"],
+        ["incendie", "sauveteur-secouriste-du-travail", "interventions-en-milieux-a-risques", "environnement"]
+    ];
 
-        // Si la catégorie contient des formations, on les affiche
-        if (!empty($formations_by_categorie[$slug])) {
-            $output .= '<ul class="submenu-formations-items">';
-            foreach ($formations_by_categorie[$slug] as $formation) {
-                $formation_url = get_permalink($formation);
-                $formation_title = get_the_title($formation);
-                $output .= '<li><a href="' . esc_url($formation_url) . '"><img src="' . esc_url(ACTESUR_FORMATION_PLUGIN_URL.'images/plus.svg') .'" />' . esc_html($formation_title) . '</a></li>';
+    $columns = [];
+
+    foreach ($order as $idx => $keys) {
+        $columns[$idx] = [];
+        foreach ($keys as $k) {
+            if (array_key_exists($k, $categories)) {
+                // On reconstruit l’associatif dans l’ordre voulu
+                $columns[$idx][$k] = $categories[$k];
             }
-            $output .= '</ul>';
         }
+    }
+    foreach ($columns as $categories){
+        $output .= '<div class="submenu-formations-column">';
+        foreach ($categories as $slug => $label) {
+            $url = site_url('/formations/?categorie=' . $slug);
+            $image_url = ACTESUR_FORMATION_PLUGIN_URL.'images/'.$slug . '.svg';
+            $output .= '<li>';
+            $output .= '<a href="' . esc_url($url) . '"><img src="'. esc_url($image_url) .'" /><span>' . esc_html($label) . '</span><i class="fa fa-angle-right" aria-hidden="true"></i></a>';
 
-        $output .= '</li>';
+            // Si la catégorie contient des formations, on les affiche
+            if (!empty($formations_by_categorie[$slug])) {
+                $output .= '<ul class="submenu-formations-items">';
+                foreach ($formations_by_categorie[$slug] as $formation) {
+                    $formation_url = get_permalink($formation);
+                    $formation_title = get_the_title($formation);
+                    $output .= '<li><a href="' . esc_url($formation_url) . '"><img src="' . esc_url(ACTESUR_FORMATION_PLUGIN_URL.'images/plus.svg') .'" />' . esc_html($formation_title) . '</a></li>';
+                }
+                $output .= '</ul>';
+            }
+
+            $output .= '</li>';
+        }
+        $output .= '</div>';
     }
 
     $output .= '</ul>';

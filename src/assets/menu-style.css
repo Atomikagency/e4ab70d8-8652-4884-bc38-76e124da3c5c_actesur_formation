@@ -18,7 +18,7 @@
         padding: 0;
     }
 
-    & ul > li {
+    & ul li {
         list-style: none;
     }
 
@@ -203,7 +203,7 @@
             display: flex;
             margin-right: 10px;
 
-            & ul > li > a > i {
+            & ul li > a > i {
                 display: none;
             }
 
@@ -263,7 +263,12 @@
                     padding-bottom: 100px;
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-                    grid-auto-flow: row dense;
+
+                    & .submenu-formations-column {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 25px;
+                    }
 
                     & li {
                         & > ul {
