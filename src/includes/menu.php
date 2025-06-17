@@ -152,7 +152,6 @@ function render_formations_submenu() {
     }
 
     $output .= '</ul>';
-
     return $output;
 }
 
