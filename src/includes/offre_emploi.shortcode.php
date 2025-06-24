@@ -6,6 +6,7 @@ if (!defined('ABSPATH')) {
 function offre_emploi_meta_shortcode($atts) {
     $atts = shortcode_atts(array(
         'field' => '',
+        'label' => '',
     ), $atts, 'offre_emploi_meta');
 
     if (empty($atts['field'])) {
@@ -26,26 +27,35 @@ function offre_emploi_meta_shortcode($atts) {
         return '';
     }
 
+    $output = '';
+    
+    if (!empty($atts['label'])) {
+        $output = '<strong>'.esc_html($atts['label']) . '</strong> ';
+    }
+
     switch ($field_name) {
         case 'type_contrat':
-            return esc_html($value);
+            $output .= esc_html($value);
+            break;
             
         case 'localisation':
-            return esc_html($value);
+            $output .= esc_html($value);
+            break;
             
         case 'salaire':
-            return esc_html($value);
+            $output .= esc_html($value);
+            break;
             
         case 'date_limite':
-            if ($value) {
-                $formatted_date = date_i18n(get_option('date_format'), strtotime($value));
-                return esc_html($formatted_date);
-            }
-            return '';
+            $output .= esc_html($value);
+            break;
             
         default:
-            return esc_html($value);
+            $output .= esc_html($value);
+            break;
     }
+
+    return $output;
 }
 
 add_shortcode('offre_emploi_meta', 'offre_emploi_meta_shortcode');

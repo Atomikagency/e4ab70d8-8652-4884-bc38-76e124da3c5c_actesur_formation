@@ -40,14 +40,7 @@ function render_offre_emploi_metabox($post) {
     ?>
     <p>
         <label for="offre_type_contrat"><strong>Type de contrat</strong></label><br>
-        <select name="offre_type_contrat" id="offre_type_contrat" class="widefat">
-            <option value="">-- Sélectionnez --</option>
-            <?php foreach ($types_contrat as $key => $label) : ?>
-                <option value="<?php echo esc_attr($key); ?>" <?php selected($type_contrat, $key); ?>>
-                    <?php echo esc_html($label); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <input type="text" name="offre_type_contrat" id="offre_type_contrat" value="<?php echo esc_attr($type_contrat); ?>" class="widefat" placeholder="Ex: CDI, CDD, Stage, Alternance..." />
     </p>
     <p>
         <label for="offre_localisation"><strong>Localisation</strong></label><br>
@@ -59,7 +52,7 @@ function render_offre_emploi_metabox($post) {
     </p>
     <p>
         <label for="offre_date_limite"><strong>Date limite de candidature</strong></label><br>
-        <input type="date" name="offre_date_limite" id="offre_date_limite" value="<?php echo esc_attr($date_limite); ?>" class="widefat" />
+        <input type="text" name="offre_date_limite" id="offre_date_limite" value="<?php echo esc_attr($date_limite); ?>" class="widefat" placeholder="Ex: 31/12/2024" />
     </p>
     <?php
 }
