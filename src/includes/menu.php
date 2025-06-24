@@ -38,7 +38,7 @@ add_shortcode('main_menu', function ($atts) {
 
 // Construction du HTML
     $output = '<nav id="actesur-top-menu">
-    <a href="/"> 
+    <a href="/" class="actesur-logo-content"> 
     <img class="actesur-logo" decoding="async" src="/wp-content/uploads/2025/06/logo-actesur.webp" alt="logo-actesur" title="logo-actesur" srcset="/wp-content/uploads/2025/06/logo-actesur.webp 553w, /wp-content/uploads/2025/06/logo-actesur-480x208.webp 480w" sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 553px, 100vw" class="wp-image-75">
     </a>
     <ul id="actesur-main-menu" class="main-menu">';

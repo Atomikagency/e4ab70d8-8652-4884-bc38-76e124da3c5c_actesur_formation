@@ -22,7 +22,7 @@
         list-style: none;
     }
 
-    & img.actesur-logo {
+    & a.actesur-logo-content {
         width: 100px;
         margin-right: auto;
     }
