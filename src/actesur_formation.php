@@ -20,6 +20,7 @@ require_once ACTESUR_FORMATION_PLUGIN_DIR . 'cpt/formation.php';
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'cpt/offre-emploi.php';
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'includes/menu.php';
 require_once ACTESUR_FORMATION_PLUGIN_DIR . 'includes/formation_list.shortcode.php';
+require_once ACTESUR_FORMATION_PLUGIN_DIR . 'includes/offre_emploi.shortcode.php';
 
 function ta_enqueue_styles()
 {
