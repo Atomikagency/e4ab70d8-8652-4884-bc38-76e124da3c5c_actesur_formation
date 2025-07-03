@@ -1,3 +1,8 @@
+#page-container header.et-l--header{
+    position: relative;
+    z-index: 99999;
+}
+
 #actesur-top-menu {
     --actesur-primary-300: #baf4ff;
     --actesur-primary-500: #00a1bf;
