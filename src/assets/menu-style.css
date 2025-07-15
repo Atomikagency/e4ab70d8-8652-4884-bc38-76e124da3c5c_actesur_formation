@@ -45,6 +45,15 @@
         border-radius: 16px;
         border: 2px solid var(--actesur-primary-500);
 
+        svg {
+            fill:white;
+            width:20px;
+        }
+
+        &:hover {
+            background: var(--actesur-primary-500) !important;
+        }
+
         & > span {
             display: none;
         }

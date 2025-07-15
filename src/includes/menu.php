@@ -1,7 +1,6 @@
 <?php
 
 add_shortcode('main_menu', function ($atts) {
-
     $atts = shortcode_atts([
         'menu' => 'MainMenu', // on passe ici le nom du menu directement
     ], $atts, 'main_menu');
@@ -45,12 +44,12 @@ add_shortcode('main_menu', function ($atts) {
 
     foreach ($menu_tree as $entry) {
         $item = $entry['item'];
-        $title = esc_html($item->title);
+        $title = ($item->title);
         $url = esc_url($item->url);
-
+        $classes = !empty($item->classes) ? $item->classes : [];
         $output .= '<li>';
 
-        $output .= '<a href="' . $url . '">' . $title;
+        $output .= '<a href="' . $url . '" class="'.(join(' ',$classes)).'">' . $title;
 
         if (!empty($entry['children']) || strtolower($title) === 'formations') {
             $output .= '<i class="fa fa-angle-right" aria-hidden="true"></i>';
@@ -76,7 +75,7 @@ add_shortcode('main_menu', function ($atts) {
     }
 
     $output .= '</ul>
-    <a href="https://actesur.mp-formation.fr/login" target="_blank" class="espace-adherent" data-icon=""><span>Espace adhérent</span></a>
+   <!-- <a href="https://actesur.mp-formation.fr/login" target="_blank" class="espace-adherent" data-icon=""><span>Espace adhérent</span></a> -->
     <button id="actesur-menu-toggle">
         <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
