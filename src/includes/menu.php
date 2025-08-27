@@ -138,6 +138,11 @@ function render_formations_submenu() {
 
             // Si la catégorie contient des formations, on les affiche
             if (!empty($formations_by_categorie[$slug])) {
+
+                usort($formations_by_categorie[$slug], function ($a, $b) {
+                    return strcasecmp(get_the_title($a), get_the_title($b));
+                });
+
                 $output .= '<ul class="submenu-formations-items">';
                 foreach ($formations_by_categorie[$slug] as $formation) {
                     $formation_url = get_permalink($formation);
